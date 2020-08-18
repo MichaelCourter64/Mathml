@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mathml.Operations;
 
 namespace Mathml
 {
@@ -18,26 +19,31 @@ namespace Mathml
         /// The person, operation name, and equation are printed as well.
         /// </summary>
         /// <param name="operations">The operations to execute and print the results of</param>
-        public static void Execute(List<Operation> operations)
+        public static List<string> Execute(List<Operation> operations)
         {
+            List<string> executionLogs = new List<string>();
+
             if (operations == null)
             {
-                return;
+                return null;
             }
 
             foreach (Operation operation in operations)
             {
                 float resultOfOperation = operation.Execute();
-
-                Console.WriteLine(
-                    OUTPUT_FORMAT, 
-                    operation.Username, 
-                    operation.OperationName, 
-                    operation.Value1, 
-                    operation.OperationSymbol, 
-                    operation.Value2, 
+                string currentExecutionLog = string.Format(
+                    OUTPUT_FORMAT,
+                    operation.Username,
+                    operation.OperationName,
+                    operation.Value1,
+                    operation.OperationSymbol,
+                    operation.Value2,
                     resultOfOperation);
+
+                executionLogs.Add(currentExecutionLog);
             }
+
+            return executionLogs;
         }
     }
 }

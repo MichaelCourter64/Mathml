@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mathml.Operations;
 
 namespace Mathml
 {
@@ -18,9 +19,19 @@ namespace Mathml
         {
             List<Operation> operations = XmlParser.RetrieveOperations();
 
-            OperationExecuter.Execute(operations);
+            List<string> executionLogs = OperationExecuter.Execute(operations);
+
+            PrintExecutionLogs(executionLogs);
 
             PauseForAcknowledgement();
+        }
+
+        private static void PrintExecutionLogs(List<string> executionLogs)
+        {
+            foreach (string log in executionLogs)
+            {
+                Console.WriteLine(log);
+            }
         }
 
         private static void PauseForAcknowledgement()

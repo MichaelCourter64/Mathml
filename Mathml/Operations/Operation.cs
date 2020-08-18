@@ -1,4 +1,4 @@
-﻿namespace Mathml
+﻿namespace Mathml.Operations
 {
     /// <summary>
     /// An operation that uses two values, and info related to that operation.
